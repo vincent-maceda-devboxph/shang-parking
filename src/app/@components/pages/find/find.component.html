@@ -1,0 +1,42 @@
+<div class="flex flex-wrap justify-center">
+    <p class="w-full text-center font-bold text-xl py-6">Parking Ticket Payment</p>
+    <p class="text-sm text-center max-w-[288px]">
+        Scan the barcode on your ticket or type your plate number to view the total amount due.
+    </p>
+
+    <div class="w-full border border-gray-50 shadow-md mt-6 mx-6">
+        <!-- Tab Headers -->
+        <div class="flex flex-wrap justify-evenly pt-2 pb-2 border-b">
+            <button class="text-base px-2 py-1 border-b-4 transition-colors duration-200" 
+                    [ngClass]="{
+                            'font-semibold text-slate-500 border-b-[#83C8D9]': activeTab === 'plate',
+                            'text-slate-300 border-b-white': activeTab !== 'plate'
+                        }" 
+                    (click)="activeTab = 'plate'">
+                Plate Input
+            </button>
+
+            <button class="text-base px-2 py-1 border-b-4 transition-colors duration-200" 
+                    [ngClass]="{
+                            'font-semibold text-slate-500 border-b-[#83C8D9]': activeTab === 'scan',
+                            'text-slate-300 border-b-white': activeTab !== 'scan'
+                        }" 
+                    (click)="activeTab = 'scan'">
+                Scan Barcode
+            </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="p-6">
+            <!-- Plate Input Tab -->
+            <div *ngIf="activeTab === 'plate'">
+                <app-plate-input></app-plate-input>
+            </div>
+
+            <!-- Scan Barcode Tab -->
+            <div *ngIf="activeTab === 'scan'">
+                <app-scan-ticket></app-scan-ticket>
+            </div>
+        </div>
+    </div>
+</div>

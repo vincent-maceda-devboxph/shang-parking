@@ -1,0 +1,24 @@
+<div class="text-center">
+    <!-- Toast notification -->
+    <div *ngIf="showToast" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-[360px] bg-red-600 text-white text-sm rounded-lg shadow-lg px-4 py-3 flex items-center justify-between">
+        <span>{{ toastMessage }}</span>
+        <button class="ml-3 text-white font-bold text-lg leading-none" (click)="dismissToast()">&times;</button>
+    </div>
+
+    <!-- <ngx-scanner-qrcode #scanner (result)="onScanSuccess($event)" [config]="config">
+    </ngx-scanner-qrcode>
+
+    <p *ngIf="result">Scanned Code: {{ result }}</p> -->
+
+    <ngx-scanner-qrcode *ngIf="!result" #scanner [config]="config" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
+
+    <p *ngIf="result">Scanned Code: {{ result }}</p>
+    <p *ngIf="result">type: {{ type }}</p>
+
+    <!-- TEMP: Manual barcode input for testing -->
+    <div class="mt-4 px-4">
+        <p class="text-sm text-left mb-1">Manual Barcode (testing)</p>
+        <input class="w-full border p-2 text-left" placeholder="Enter barcode e.g. 347246452283331511" [(ngModel)]="manualBarcode" />
+        <button (click)="onManualSubmit()" [disabled]="!manualBarcode.trim()" class="w-full bg-slate-950 text-white p-2 mt-2 disabled:opacity-50">Submit</button>
+    </div>
+</div>

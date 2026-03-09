@@ -1,0 +1,23 @@
+{
+    "/api/maya": {
+      "target": "https://pg-sandbox.paymaya.com",
+      "secure": true,
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "pathRewrite": {
+        "^/api/maya": "/checkout/v1/checkouts"
+      }
+    },
+    "/api/parking": {
+      "target": "http://localhost:5000",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/api/checkout": {
+      "target": "http://localhost:5000",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
