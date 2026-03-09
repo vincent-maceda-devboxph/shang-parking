@@ -51,6 +51,7 @@ export class ScanTicketComponent {
         this.spinner.hide();
         if (details.message !== 'SUCCESS') {
           this.displayToast(details.message || 'Parking ticket not found. Please try again.');
+          this.resetScanner();
           return;
         }
         sessionStorage.setItem('parkingDetails', JSON.stringify(details));
@@ -59,6 +60,7 @@ export class ScanTicketComponent {
       error: (err: any) => {
         this.spinner.hide();
         this.displayToast(err.error?.message || 'Failed to fetch parking details. Please try again.');
+        this.resetScanner();
       },
     });
   }
@@ -71,6 +73,13 @@ export class ScanTicketComponent {
 
   dismissToast(): void {
     this.showToast = false;
+  }
+
+  private resetScanner(): void {
+    this.result = '';
+    setTimeout(() => {
+      this.handle(this.action, 'start');
+    }, 500);
   }
 
   public handle(action: any, fn: string): void {
