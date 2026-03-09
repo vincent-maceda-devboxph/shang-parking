@@ -9,36 +9,36 @@ import { FailedPageComponent } from './parking/failed-page/failed-page.component
 import { FindComponent } from './find/find.component';
 
 const routes: Routes = [
-  {	
-		path: 'find', 
+  {
+		path: 'find',
 		component: PagesComponent,
 		// canActivate: [authGuard],
 		children: [
 			{ path: '', component: FindComponent },
 			{ path: 'plate', component: PlateInputComponent },
       		{ path: 'scan', component: ScanTicketComponent },
-			
+
 		]
 	},
-  {	
-		path: 'results', 
+  {
+		path: 'results',
 		component: PagesComponent,
 		// canActivate: [authGuard],
 		children: [
 			{ path: 'plate', component: ResultsPageComponent },
       // { path: 'scan', component: ScanTicketComponent },
-			
+
 		]
 	},
-	{	
-		path: 'redirect', 
+	{
+		path: 'redirect',
 		component: PagesComponent,
 		// canActivate: [authGuard],
 		children: [
 			{ path: 'success', component: SuccessPageComponent },
 			{ path: 'fail', component: FailedPageComponent },
-      // { path: 'scan', component: ScanTicketComponent },
-			
+			{ path: 'cancel', component: FailedPageComponent },
+
 		]
 	}
 ];
