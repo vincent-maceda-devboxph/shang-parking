@@ -21,11 +21,11 @@
             </div>
             <div class="w-full justify-center flex flex-wrap px-6">
                 <p class="w-1/2 text-left">Time In:</p>
-                <p class="w-1/2 text-right">{{ parkingDetails.startTime | date: "short" }}</p>
+                <p class="w-1/2 text-right">{{ parkingDetails.startTime | date: "short":"UTC" }}</p>
             </div>
             <div class="w-full justify-center flex flex-wrap px-6">
                 <p class="w-1/2 text-left">Time Out:</p>
-                <p class="w-1/2 text-right">{{ parkingDetails.endTime | date: "short" }}</p>
+                <p class="w-1/2 text-right">{{ parkingDetails.endTime | date: "short":"UTC" }}</p>
             </div>
             <div class="w-full justify-center border-b border-black flex flex-wrap px-6 pb-2">
                 <p class="w-1/2 text-left">Duration:</p>
