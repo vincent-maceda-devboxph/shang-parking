@@ -36,8 +36,6 @@ export class PlateInputComponent implements OnInit {
           this.displayToast(details.message || 'Parking ticket not found. Please try again.');
           return;
         }
-
-        console.log(details);
         sessionStorage.setItem('parkingDetails', JSON.stringify(details));
         this.router.navigate(['/parking/results/plate']);
       },
