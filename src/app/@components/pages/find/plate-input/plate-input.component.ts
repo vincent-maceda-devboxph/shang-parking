@@ -29,7 +29,7 @@ export class PlateInputComponent implements OnInit {
   onNext(): void {
     if (!this.plateNumber.trim()) return;
     this.spinner.show();
-    this.parkingService.getParkingDetails('LPN', this.plateNumber.trim()).subscribe({
+    this.parkingService.getParkingDetails('LICENSEPLATE', this.plateNumber.trim()).subscribe({
       next: (details) => {
         this.spinner.hide();
         if (details.message !== 'SUCCESS') {

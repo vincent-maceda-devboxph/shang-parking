@@ -28,7 +28,7 @@ export class ParkingService {
 
   constructor(private http: HttpClient) {}
 
-  getParkingDetails(idType: 'LPN' | 'BARCODE', id: string): Observable<ParkingDetails> {
+  getParkingDetails(idType: 'LICENSEPLATE' | 'BARCODE', id: string): Observable<ParkingDetails> {
     return this.http.post<ParkingDetails>(`${this.parkingUrl}/details`, { idType, id });
   }
 
