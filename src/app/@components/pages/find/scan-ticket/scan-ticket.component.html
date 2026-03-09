@@ -5,14 +5,6 @@
         <button class="ml-3 text-white font-bold text-lg leading-none" (click)="dismissToast()">&times;</button>
     </div>
 
-    <!-- <ngx-scanner-qrcode #scanner (result)="onScanSuccess($event)" [config]="config">
-    </ngx-scanner-qrcode>
-
-    <p *ngIf="result">Scanned Code: {{ result }}</p> -->
-
-    <ngx-scanner-qrcode *ngIf="!result" #scanner [config]="config" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
-
-    <p *ngIf="result">Scanned Code: {{ result }}</p>
-    <p *ngIf="result">type: {{ type }}</p>
+    <ngx-scanner-qrcode *ngIf="!result" #scanner [config]="config" (event)="onEvent($event, scanner)"></ngx-scanner-qrcode>
 
 </div>

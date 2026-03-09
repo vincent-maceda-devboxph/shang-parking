@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxScannerQrcodeComponent, NgxScannerQrcodeModule, ScannerQRCodeConfig, ScannerQRCodeConfigType, ScannerQRCodeResult, ScannerQRCodeSymbolType } from 'ngx-scanner-qrcode';
@@ -9,7 +8,7 @@ import { ParkingService, ParkingDetails } from '../../../services/parking.servic
 @Component({
   selector: 'app-scan-ticket',
   standalone: true,
-  imports: [NgxScannerQrcodeModule, CommonModule, FormsModule],
+  imports: [NgxScannerQrcodeModule, CommonModule],
   templateUrl: './scan-ticket.component.html',
   styleUrl: './scan-ticket.component.scss'
 })
@@ -17,7 +16,6 @@ export class ScanTicketComponent {
   @ViewChild('scanner', { static: false }) action!: NgxScannerQrcodeComponent;
   result: string = '';
   type: string = '';
-  manualBarcode: string = '';
   showToast: boolean = false;
   toastMessage: string = '';
 
@@ -27,8 +25,7 @@ export class ScanTicketComponent {
         width: window.innerWidth,
       },
     },
-    // symbolType: [ScannerQRCodeSymbolType.ScannerQRCode_CODE128, ScannerQRCodeSymbolType.ScannerQRCode_EAN13, ScannerQRCodeSymbolType.ScannerQRCode_EAN8]
-    symbolType: [ScannerQRCodeSymbolType.ScannerQRCode_CODE128]
+    symbolType: [ScannerQRCodeSymbolType.ScannerQRCode_I25, ScannerQRCodeSymbolType.ScannerQRCode_CODE128]
   };
 
   constructor(private spinner: NgxSpinnerService, private router: Router, private parkingService: ParkingService) {}
@@ -45,12 +42,6 @@ export class ScanTicketComponent {
     this.type = e[0].type.toString();
     this.action.stop();
     this.lookupBarcode(this.result);
-  }
-
-  onManualSubmit(): void {
-    if (this.manualBarcode.trim()) {
-      this.lookupBarcode(this.manualBarcode.trim());
-    }
   }
 
   private lookupBarcode(barcode: string): void {
