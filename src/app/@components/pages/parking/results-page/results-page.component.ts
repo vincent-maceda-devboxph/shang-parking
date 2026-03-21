@@ -49,6 +49,14 @@ export class ResultsPageComponent implements OnInit {
         value: details.amount,
         currency: 'PHP',
       },
+      buyer: {
+        firstName: 'Parking',
+        lastName: 'Customer',
+        contact: {
+          email: 'parking@shangrila-plaza.com',
+          phone: '+639000000000',
+        },
+      },
       items: [
         {
           name: 'Parking Fee',
