@@ -40,6 +40,8 @@ export class ResultsPageComponent implements OnInit {
     }
 
     const details: ParkingDetails = JSON.parse(stored);
+    details.startTime = details.startTime?.replace('Z', '');
+    details.endTime = details.endTime?.replace('Z', '');
     this.parkingDetails = details;
     this.checkoutRequest = {
       requestReferenceNumber: `REF-${Date.now()}`,
@@ -57,6 +59,11 @@ export class ResultsPageComponent implements OnInit {
       redirectUrl: {
         success: `${this.appUrl}/parking/redirect/success`,
         failure: `${this.appUrl}/parking/redirect/fail`,
+      },
+      parkingDetails: {
+        sessionId: details.sessionId,
+        paymentIdentifier: details.paymentIdentifier,
+        baseUrl: details.baseUrl,
       },
     };
     this.spinner.hide();
