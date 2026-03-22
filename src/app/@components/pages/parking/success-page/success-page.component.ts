@@ -22,6 +22,24 @@ export class SuccessPageComponent implements OnInit {
 
   ngOnInit(): void {
     const stored = sessionStorage.getItem('parkingDetails');
+    const checkoutId = sessionStorage.getItem('checkoutId');
+    if (checkoutId) {
+      console.log('=== WEBHOOK TEST PAYLOAD (copy-paste to Postman) ===');
+      console.log('POST URL: ' + window.location.origin.replace('spi-client-dev', 'spi-webapi-dev').replace(':4200', ':5000') + '/api/webhook/maya');
+      console.log(JSON.stringify({
+        id: checkoutId,
+        isPaid: true,
+        status: 'PAYMENT_SUCCESS',
+        paymentStatus: 'PAYMENT_SUCCESS',
+        requestReferenceNumber: stored ? JSON.parse(stored).requestReferenceNumber : 'UNKNOWN',
+        totalAmount: { value: stored ? JSON.parse(stored).amount : 0, currency: 'PHP' },
+        paymentScheme: 'master-card',
+        transactionReferenceNumber: 'TRN-TEST-' + Date.now(),
+      }, null, 2));
+      console.log('=== END WEBHOOK TEST PAYLOAD ===');
+      sessionStorage.removeItem('checkoutId');
+    }
+
     if (!stored) {
       this.paymentProcessed = true;
       return;

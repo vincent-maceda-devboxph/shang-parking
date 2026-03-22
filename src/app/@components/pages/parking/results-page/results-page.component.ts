@@ -96,6 +96,7 @@ export class ResultsPageComponent implements OnInit {
     this.parkingService.createCheckout(this.checkoutRequest).subscribe({
       next: (response) => {
         console.log('Maya Checkout Response:', response);
+        sessionStorage.setItem('checkoutId', response.checkoutId);
         window.location.href = response.redirectUrl;
         this.spinner.hide();
       },

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxScannerQrcodeComponent, NgxScannerQrcodeModule, ScannerQRCodeConfig, ScannerQRCodeConfigType, ScannerQRCodeResult, ScannerQRCodeSymbolType } from 'ngx-scanner-qrcode';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ParkingService, ParkingDetails } from '../../../services/parking.service';
@@ -20,6 +20,7 @@ export class ScanTicketComponent {
   manualBarcode: string = '';
   showToast: boolean = false;
   toastMessage: string = '';
+  testMode: boolean = false;
 
   public config: ScannerQRCodeConfig = {
     constraints: {
@@ -30,9 +31,12 @@ export class ScanTicketComponent {
     symbolType: [ScannerQRCodeSymbolType.ScannerQRCode_I25, ScannerQRCodeSymbolType.ScannerQRCode_CODE128]
   };
 
-  constructor(private spinner: NgxSpinnerService, private router: Router, private parkingService: ParkingService) {}
+  constructor(private spinner: NgxSpinnerService, private router: Router, private route: ActivatedRoute, private parkingService: ParkingService) {
+    this.testMode = this.route.snapshot.queryParamMap.get('test') === 'true';
+  }
 
   ngAfterViewInit(): void {
+    if (this.testMode) return;
     this.action.isReady.subscribe((res: any) => {
 
       this.handle(this.action, 'start');
