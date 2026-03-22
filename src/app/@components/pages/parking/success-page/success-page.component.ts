@@ -56,7 +56,6 @@ export class SuccessPageComponent implements OnInit {
       customerId: 'devbox',
     }).subscribe({
       next: (res) => {
-        console.log('Scheidt-Bachmann Payment Result:', res);
         this.paymentProcessed = true;
         this.spinner.hide();
       },
