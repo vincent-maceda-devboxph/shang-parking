@@ -8,8 +8,8 @@ import { environment } from '../../../environments/environment';
 })
 export class MayaService {
   private apiUrl = `${environment.apiUrl}/maya`;
-  private publicKey = 'pk-6BluPsIvq24sDzsYiepwLngpXknMcQ8p4AdZWpdxx4K';
-  private secretKey = 'sk-pX6HfoHkqaIvDKerqi0OGW99kMyeHxMvBd0138WX8zo';
+  private publicKey = 'pk-vIUY04LyYBRUIV4ueK44uX7QAblZNUK0KJbldYdeyWn';
+  private secretKey = 'sk-6wRmqf8g4nl2dWaoGNEBRYf6R2TErIkOVAZjlJEIU3m';
 
   constructor(private http: HttpClient) { }
 
