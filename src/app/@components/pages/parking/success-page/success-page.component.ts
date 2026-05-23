@@ -67,4 +67,50 @@ export class SuccessPageComponent implements OnInit {
       },
     });
   }
+
+  // ngOnInit(): void {
+  //   const stored = sessionStorage.getItem('parkingDetails');
+
+  //   if (!stored) {
+  //     this.paymentProcessed = true;
+  //     return;
+  //   }
+
+  //   let parkingDetails: any;
+
+  //   try {
+  //     parkingDetails = JSON.parse(stored);
+  //   } catch {
+  //     this.paymentError = 'Invalid parking payment session. Please contact support.';
+  //     this.paymentProcessed = true;
+  //     sessionStorage.removeItem('parkingDetails');
+  //     return;
+  //   }
+
+  //   this.spinner.show();
+
+  //   this.parkingService.processParkingPayment({
+  //     sessionId: parkingDetails.sessionId,
+  //     paymentIdentifier: parkingDetails.paymentIdentifier,
+  //     baseUrl: parkingDetails.baseUrl,
+  //     customerId: 'devbox',
+  //   }).subscribe({
+  //     next: () => {
+  //       sessionStorage.removeItem('parkingDetails');
+  //       sessionStorage.removeItem('checkoutId');
+
+  //       this.paymentProcessed = true;
+  //       this.spinner.hide();
+  //     },
+  //     error: (err) => {
+  //       console.error('Error processing parking payment:', err);
+
+  //       this.paymentError =
+  //         'Payment was received but parking gate update failed. Please contact support.';
+
+  //       this.paymentProcessed = true;
+  //       this.spinner.hide();
+  //     },
+  //   });
+  // }
 }
